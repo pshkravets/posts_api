@@ -1,6 +1,6 @@
 <h2>Hi there everyone</h2>
 First of all you need to upload project from GitHub <br>
-`git clone https://github.com/pshkravets/posts_api.git` <br>
+` git clone https://github.com/pshkravets/posts_api.git ` <br>
 Then you need to find docker-compose file and go to thid directory
 `cd <path_to_docker-compose>` <br>
 Then you need to start container <br>
