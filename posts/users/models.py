@@ -57,6 +57,8 @@ class MyUser(AbstractBaseUser):
     )
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    auto_reply_enabled = models.BooleanField(default=False)
+    reply_delay = models.IntegerField(default=60)
 
     objects = MyUserManager()
 

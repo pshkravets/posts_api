@@ -62,7 +62,7 @@ class UserAdmin(BaseUserAdmin):
     list_display = ["email", "date_of_birth", "is_admin"]
     list_filter = ["is_admin"]
     fieldsets = [
-        (None, {"fields": ["email", "password", 'jwt_token']}),
+        (None, {"fields": ["email", "password", 'jwt_token', 'auto_reply_enabled', 'reply_delay']}),
         ("Personal info", {"fields": ["date_of_birth"]}),
         ("Permissions", {"fields": ["is_admin"]}),
     ]

@@ -2,6 +2,7 @@ import os
 
 from pathlib import Path
 
+from openai import OpenAI
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -15,10 +16,11 @@ SECRET_KEY = 'django-insecure-gqo$*uscphu%m*6-3no4swp8dmfg_ba)8y50hwc&+ow8kgbb-=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
-
-# Application definition
+client = OpenAI(
+    api_key='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'
+)
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -74,9 +76,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME':  'railway',
         'USER':  'postgres',
-        'PASSWORD':  'GsNhgxkxMUcGhriKPMMpTlsRyQbxCXvC',
+        'PASSWORD':  'GEnBxubzgaZFNElqZXaDXycyHTnNiWOR',
         'HOST':  'monorail.proxy.rlwy.net',
-        'PORT':  '49268',
+        'PORT':  '44206',
     }
 }
 
@@ -124,3 +126,7 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CELERY_BROKER_URL = 'redis://redis'
+CELERY_TIMEZONE = "Australia/Tasmania"
+CELERY_TASK_TRACK_STARTED = True

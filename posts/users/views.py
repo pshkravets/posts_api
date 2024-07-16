@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.views.generic import FormView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -36,3 +36,8 @@ class Registration(FormView):
             return redirect(reverse_lazy('login'))
         MyUser.objects.create_user(email=data['email'], password=data['password1'], date_of_birth='2222-12-22')
         return redirect(reverse_lazy('home'))
+
+
+def log_out(request):
+    logout(request)
+    return redirect(reverse_lazy('login'))
