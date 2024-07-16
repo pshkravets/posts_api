@@ -3,6 +3,8 @@
 First of all you need to upload project from GitHub:<br>
 <pre><code>git clone https://github.com/pshkravets/posts_api.git</code></pre>
 
+In directory posts/posts create a folder named env and copy paste a file that I provide you <br>
+
 Then you need to find docker-compose file and go to this directory:<br>
 <pre><code>cd &lt;path_to_docker-compose&gt;</code></pre>
 
