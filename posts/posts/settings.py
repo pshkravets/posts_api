@@ -1,25 +1,20 @@
 import os
+from .env import env
 
 from pathlib import Path
 
 from openai import OpenAI
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+SECRET_KEY = env.ENV_SECRET_KEY
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-gqo$*uscphu%m*6-3no4swp8dmfg_ba)8y50hwc&+ow8kgbb-='
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 client = OpenAI(
-    api_key='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'
+    api_key=env.ENV_OPENAPI_API_KEY
 )
 
 INSTALLED_APPS = [
@@ -65,26 +60,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'posts.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
 AUTH_USER_MODEL = "users.MyUser"
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME':  'railway',
-        'USER':  'postgres',
-        'PASSWORD':  'GEnBxubzgaZFNElqZXaDXycyHTnNiWOR',
-        'HOST':  'monorail.proxy.rlwy.net',
-        'PORT':  '44206',
+        'ENGINE': env.ENV_DATABASE_ENGINE,
+        'NAME':  env.ENV_DATABASE_NAME,
+        'USER':  env.ENV_DATABASE_USER,
+        'PASSWORD': env.ENV_DATABASE_PASSWORD,
+        'HOST':  env.ENV_DATABASE_HOST,
+        'PORT':  env.ENV_DATABASE_PORT,
     }
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -102,9 +90,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/5.0/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -113,20 +98,13 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CELERY_BROKER_URL = 'redis://redis'
-CELERY_TIMEZONE = "Australia/Tasmania"
+CELERY_TIMEZONE = "UTC"
 CELERY_TASK_TRACK_STARTED = True
